@@ -1,5 +1,5 @@
 import { useForm } from 'react-hook-form';
-import { LoginType, authZodValidator } from '@/validations/auth.validation';
+import { loginSchema, LoginType } from '@/validations/auth.validation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { login as loginUser } from '@/services/auth.service';
 import { useMutation } from '@tanstack/react-query';
@@ -23,7 +23,7 @@ const Login = () => {
     handleSubmit,
     // reset,
   } = useForm<LoginType>({
-    resolver: zodResolver(authZodValidator('login')!),
+    resolver: zodResolver(loginSchema),
     mode: 'onChange',
     reValidateMode: 'onChange',
     defaultValues: defaultValues,
